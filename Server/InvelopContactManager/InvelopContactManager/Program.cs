@@ -1,4 +1,6 @@
 
+using InvelopContactManager.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -20,6 +22,9 @@ namespace InvelopContactManager
             builder.Services.AddMediatR(cfg => cfg
                    .RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
 
+
+            builder.Services.AddDbContext<InvelopDbContext>(options =>
+                options.UseNpgsql(builder.Configuration.GetConnectionString("Invelop")));
 
             var app = builder.Build();
 
