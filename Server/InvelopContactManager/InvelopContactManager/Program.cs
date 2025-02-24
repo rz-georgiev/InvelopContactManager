@@ -1,4 +1,5 @@
 
+using FluentValidation;
 using InvelopContactManager.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +23,7 @@ namespace InvelopContactManager
             builder.Services.AddMediatR(cfg => cfg
                    .RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
 
+            builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             builder.Services.AddDbContext<InvelopDbContext>(options =>
                 options.UseNpgsql(builder.Configuration.GetConnectionString("Invelop")));

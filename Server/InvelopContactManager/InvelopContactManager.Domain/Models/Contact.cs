@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace InvelopContactManager.Domain.Models
+﻿namespace InvelopContactManager.Domain.Models
 {
     public class Contact
     {
@@ -22,6 +20,31 @@ namespace InvelopContactManager.Domain.Models
         public string Iban { get; private set; }
 
         public Contact(string firstName,
+            string surname,
+            DateTime dob,
+            string address,
+            string phoneNumber,
+            string iban)
+        {
+            SetContactData(firstName, surname, dob, address, phoneNumber, iban);
+        }
+
+        public void UpdateContactId(int id)
+        {
+            Id = id;
+        }
+
+        public void UpdateContact(string firstName,
+            string surname,
+            DateTime dob,
+            string address,
+            string phoneNumber,
+            string iban)
+        {
+            SetContactData(firstName, surname, dob, address, phoneNumber, iban);
+        }
+
+        private void SetContactData(string firstName,
             string surname,
             DateTime dob,
             string address,

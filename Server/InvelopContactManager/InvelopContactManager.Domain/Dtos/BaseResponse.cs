@@ -6,7 +6,7 @@ namespace InvelopContactManager.Domain.Models
     {
         public bool IsOk { get; set; }
 
-        public string Message { get; set; }
+        public string? Message { get; set; }
     }
 
     public class BaseResponse<TResult>
@@ -14,8 +14,6 @@ namespace InvelopContactManager.Domain.Models
         public bool IsOk { get; set; } = true;
 
         public string? Message { get; set; }
-
-        public string? StatusCode { get; set; }
 
         public TResult? Result { get; set; }
     }
