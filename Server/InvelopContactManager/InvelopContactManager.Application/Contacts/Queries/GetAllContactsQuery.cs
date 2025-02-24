@@ -3,8 +3,7 @@ using MediatR;
 
 namespace InvelopContactManager.Application.Contacts.Queries
 {
-    public class GetAllContactsQuery : IRequest<BaseResponse<ContactResponseDto>>
+    public class GetAllContactsQuery : IRequest<BaseResponse<IEnumerable<ContactResponseDto>>>
     {
-        public int Id { get; set; }
     }
 }

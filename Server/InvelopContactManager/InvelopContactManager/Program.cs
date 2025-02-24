@@ -1,9 +1,11 @@
 
 using FluentValidation;
 using InvelopContactManager.Infrastructure;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using System.Reflection.Metadata;
 
 namespace InvelopContactManager
 {
@@ -15,18 +17,21 @@ namespace InvelopContactManager
 
             // Add services to the container.
 
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddMediatR(cfg => cfg
-                   .RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
 
-            builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(InvelopContactManager.Application.AssemblyReference).GetTypeInfo().Assembly));
+
+            //builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             builder.Services.AddDbContext<InvelopDbContext>(options =>
                 options.UseNpgsql(builder.Configuration.GetConnectionString("Invelop")));
+
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             var app = builder.Build();
 

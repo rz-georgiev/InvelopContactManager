@@ -1,11 +1,12 @@
 ﻿using FluentValidation;
+using InvelopContactManager.Application.Contacts.Commands;
 using InvelopContactManager.Domain.Models;
 
 namespace InvelopContactManager.Application.Contacts.Validators
 {
-    public class ContactValidator : AbstractValidator<Contact>
+    public class CreateContactValidator : AbstractValidator<CreateContactCommand>
     {
-        public ContactValidator()
+        public CreateContactValidator()
         {
             RuleFor(x => x.FirstName).NotEmpty().WithMessage("First name is required.");
             RuleFor(x => x.Surname).NotEmpty().WithMessage("Surname is required.");
