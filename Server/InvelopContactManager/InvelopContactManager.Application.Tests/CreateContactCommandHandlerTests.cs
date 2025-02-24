@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InvelopContactManager.Application.Tests
 {
-    public class UnitTest1
+    public class CreateContactCommandHandlerTests
     {
         [Fact]
         public async Task Handle_ShouldReturnTrue_WhenDataIsValid()
