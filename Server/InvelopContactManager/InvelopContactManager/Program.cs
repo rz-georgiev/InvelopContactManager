@@ -1,4 +1,7 @@
 
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
+
 namespace InvelopContactManager
 {
     public class Program
@@ -13,6 +16,10 @@ namespace InvelopContactManager
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddMediatR(cfg => cfg
+                   .RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
+
 
             var app = builder.Build();
 

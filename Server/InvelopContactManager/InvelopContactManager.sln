@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvelopContactManager.Commo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvelopContactManager.Tests", "InvelopContactManager.Tests\InvelopContactManager.Tests.csproj", "{66BDFDCB-C488-4BB8-A844-25F73A2EF381}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvelopContactManager.Infrastructure", "InvelopContactManager.Infrastructure\InvelopContactManager.Infrastructure.csproj", "{A2CBA88A-FA6C-4162-A395-BB25F0A4695A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{66BDFDCB-C488-4BB8-A844-25F73A2EF381}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66BDFDCB-C488-4BB8-A844-25F73A2EF381}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66BDFDCB-C488-4BB8-A844-25F73A2EF381}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2CBA88A-FA6C-4162-A395-BB25F0A4695A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2CBA88A-FA6C-4162-A395-BB25F0A4695A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2CBA88A-FA6C-4162-A395-BB25F0A4695A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2CBA88A-FA6C-4162-A395-BB25F0A4695A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
