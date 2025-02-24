@@ -24,9 +24,9 @@ namespace InvelopContactManager
             builder.Services.AddSwaggerGen();
 
 
-            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(InvelopContactManager.Application.AssemblyReference).GetTypeInfo().Assembly));
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(Application.AssemblyReference).GetTypeInfo().Assembly));
 
-            //builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            builder.Services.AddValidatorsFromAssembly(typeof(Application.AssemblyReference).GetTypeInfo().Assembly);
 
             builder.Services.AddDbContext<InvelopDbContext>(options =>
                 options.UseNpgsql(builder.Configuration.GetConnectionString("Invelop")));

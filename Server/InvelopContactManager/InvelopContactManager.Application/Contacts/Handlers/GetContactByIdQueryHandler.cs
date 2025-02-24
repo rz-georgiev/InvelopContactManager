@@ -22,7 +22,11 @@ namespace InvelopContactManager.Application.Contacts.Handlers
         public async Task<BaseResponse<ContactResponseDto>> Handle(GetContactByIdQuery request, CancellationToken cancellationToken)
         {
             var contact = await _dbContext.Contacts.SingleOrDefaultAsync(x => x.Id == request.Id);
-
+            if (contact == null)
+            {
+                return ResponseHelper.Failure<ContactResponseDto>("Contact with the provided id was not found");
+            }
+            
             var result = _mapper.Map<ContactResponseDto>(contact);
 
             return ResponseHelper.Success(result);

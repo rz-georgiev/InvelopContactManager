@@ -1,4 +1,5 @@
-﻿using InvelopContactManager.Application.Contacts.Commands;
+﻿using FluentValidation;
+using InvelopContactManager.Application.Contacts.Commands;
 using InvelopContactManager.Common;
 using InvelopContactManager.Domain.Models;
 using InvelopContactManager.Infrastructure;
@@ -9,14 +10,25 @@ namespace InvelopContactManager.Application.Contacts.Handlers
     public class DeleteContactCommandHandler : IRequestHandler<DeleteContactCommand, BaseResponse>
     {
         private readonly InvelopDbContext _dbContext;
+        private readonly IValidator<DeleteContactCommand> _validator;
 
-        public DeleteContactCommandHandler(InvelopDbContext dbContext)
+        public DeleteContactCommandHandler(InvelopDbContext dbContext, IValidator<DeleteContactCommand> validator)
         {
             _dbContext = dbContext;
+            _validator = validator;
         }
 
+        /// <summary>
+        /// Handles deletion of existing contacts and ensures that validations are executed.
+        /// </summary>
         public async Task<BaseResponse> Handle(DeleteContactCommand request, CancellationToken cancellationToken)
         {
+            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                return ResponseHelper.Failure(string.Join(", ", validationResult.Errors));
+            }
+
             var contact = _dbContext.Contacts.SingleOrDefault(x => x.Id == request.Id);
             if (contact == null)
             {

@@ -1,4 +1,6 @@
-﻿using InvelopContactManager.Application.Contacts.Commands;
+﻿using FluentValidation;
+using InvelopContactManager.Application.Contacts.Commands;
+using InvelopContactManager.Application.Contacts.Validators;
 using InvelopContactManager.Common;
 using InvelopContactManager.Domain.Models;
 using InvelopContactManager.Infrastructure;
@@ -9,23 +11,34 @@ namespace InvelopContactManager.Application.Contacts.Handlers
     public class CreateContactCommandHandler : IRequestHandler<CreateContactCommand, BaseResponse<ContactEditResponseDto>>
     {
         private readonly InvelopDbContext _dbContext;
+        private readonly IValidator<CreateContactCommand> _validator;
 
-        public CreateContactCommandHandler(InvelopDbContext dbContext)
+        public CreateContactCommandHandler(InvelopDbContext dbContext, IValidator<CreateContactCommand> validator)
         {
             _dbContext = dbContext;
+            _validator = validator;
         }
 
+        /// <summary>
+        /// Handles creation of new contacts and ensures that validations are executed.
+        /// </summary>
         public async Task<BaseResponse<ContactEditResponseDto>> Handle(CreateContactCommand request, CancellationToken cancellationToken)
         {
-            var contact = new Contact(request.FirstName,
+            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                return ResponseHelper.Failure<ContactEditResponseDto>(string.Join(", ", validationResult.Errors));
+            }
+            
+            try
+            {
+                var contact = new Contact(request.FirstName,
                 request.Surname,
                 request.Dob,
                 request.Address,
                 request.PhoneNumber,
                 request.Iban);
 
-            try
-            {
                 await _dbContext.Contacts.AddAsync(contact, cancellationToken);
                 await _dbContext.SaveChangesAsync(cancellationToken);
 
