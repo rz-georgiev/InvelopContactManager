@@ -1,6 +1,6 @@
 ﻿using InvelopContactManager.Domain.Models;
 
-namespace InvelopContactManager.Common
+namespace InvelopContactManager.Common.Helpers
 {
     public static class ResponseHelper
     {

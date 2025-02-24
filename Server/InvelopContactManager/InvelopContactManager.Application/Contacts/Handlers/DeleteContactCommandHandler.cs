@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using InvelopContactManager.Application.Contacts.Commands;
-using InvelopContactManager.Common;
+using InvelopContactManager.Common.Helpers;
 using InvelopContactManager.Domain.Models;
 using InvelopContactManager.Infrastructure;
 using MediatR;

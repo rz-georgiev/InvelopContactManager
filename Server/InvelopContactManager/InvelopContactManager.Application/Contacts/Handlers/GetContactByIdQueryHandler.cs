@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using InvelopContactManager.Application.Contacts.Queries;
-using InvelopContactManager.Common;
+using InvelopContactManager.Common.Helpers;
 using InvelopContactManager.Domain.Models;
 using InvelopContactManager.Infrastructure;
 using MediatR;

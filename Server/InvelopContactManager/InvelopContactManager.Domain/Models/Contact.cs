@@ -19,7 +19,8 @@
 
         public string Iban { get; private set; }
 
-        public Contact(string firstName,
+        public Contact(
+            string firstName,
             string surname,
             DateTime dob,
             string address,
@@ -27,11 +28,6 @@
             string iban)
         {
             SetContactData(firstName, surname, dob, address, phoneNumber, iban);
-        }
-
-        public void UpdateContactId(int id)
-        {
-            Id = id;
         }
 
         public void UpdateContact(string firstName,
