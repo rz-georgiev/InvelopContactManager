@@ -7,7 +7,7 @@ using MediatR;
 
 namespace InvelopContactManager.Application.Contacts.Handlers
 {
-    public class DeleteContactCommandHandler : IRequestHandler<DeleteContactCommand, BaseResponse>
+    public class DeleteContactCommandHandler : IRequestHandler<DeleteContactCommand, BaseResponse<ContactEditResponseDto>>
     {
         private readonly InvelopDbContext _dbContext;
         private readonly IValidator<DeleteContactCommand> _validator;
@@ -21,18 +21,18 @@ namespace InvelopContactManager.Application.Contacts.Handlers
         /// <summary>
         /// Handles deletion of existing contacts and ensures that validations are executed.
         /// </summary>
-        public async Task<BaseResponse> Handle(DeleteContactCommand request, CancellationToken cancellationToken)
+        public async Task<BaseResponse<ContactEditResponseDto>> Handle(DeleteContactCommand request, CancellationToken cancellationToken)
         {
             var validationResult = await _validator.ValidateAsync(request, cancellationToken);
             if (!validationResult.IsValid)
             {
-                return ResponseHelper.Failure(string.Join(", ", validationResult.Errors));
+                return ResponseHelper.Failure<ContactEditResponseDto>(string.Join(", ", validationResult.Errors));
             }
 
             var contact = _dbContext.Contacts.SingleOrDefault(x => x.Id == request.Id);
             if (contact == null)
             {
-                return ResponseHelper.Failure("Contact with the provided id was not found");
+                return ResponseHelper.Failure<ContactEditResponseDto>("Contact with the provided id was not found");
             }
 
             try
@@ -40,11 +40,14 @@ namespace InvelopContactManager.Application.Contacts.Handlers
                 _dbContext.Contacts.Remove(contact);
                 await _dbContext.SaveChangesAsync();
 
-                return ResponseHelper.Success("Successfully deleted contact");
+                return ResponseHelper.Success<ContactEditResponseDto>(new ContactEditResponseDto
+                {
+                    ContactId = contact.Id
+                });
             }
             catch (Exception)
             {
-                return ResponseHelper.Failure("An error occurred while trying to delete the contact");
+                return ResponseHelper.Failure<ContactEditResponseDto>("An error occurred while trying to delete the contact");
             }
         }
     }

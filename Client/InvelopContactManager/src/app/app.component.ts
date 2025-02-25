@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ContactsListComponent } from "./features/contacts-list/components/contacts-list.component";
+import { ContactsEditorComponent } from './features/contacts/components/contacts-editor/contacts-editor.component';
+import { ContactsListComponent } from './features/contacts/components/contacts-list/contacts-list.component';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, ContactsListComponent],
+  imports: [RouterOutlet, ContactsListComponent, ContactsEditorComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

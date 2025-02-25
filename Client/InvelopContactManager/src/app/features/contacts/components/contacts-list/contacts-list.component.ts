@@ -9,8 +9,8 @@ import { TagModule } from 'primeng/tag';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { MultiSelectModule } from 'primeng/multiselect';
-import { ContactResponseDto } from '../models/contactResponseDto';
-import { ContactsService } from '../services/contacts.service';
+import { ContactResponseDto } from '../../models/contactResponseDto copy';
+import { ContactsService } from '../../services/contacts.service';
 
 @Component({
   selector: 'app-contacts-list',
