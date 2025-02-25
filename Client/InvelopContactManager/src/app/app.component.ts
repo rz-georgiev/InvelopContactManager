@@ -11,4 +11,8 @@ import { ContactsListComponent } from './features/contacts/components/contacts-l
 })
 export class AppComponent {
   title = 'InvelopContactManager';
+
+  constructor() {
+  }
+  
 }

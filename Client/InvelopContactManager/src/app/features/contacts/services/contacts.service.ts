@@ -20,19 +20,19 @@ export class ContactsService {
   }
 
   getById(id?: number): Observable<BaseResponse<ContactResponseDto>> {
-    return this.httpClient.get<BaseResponse<ContactResponseDto>>(`${this._baseUrl}//GetById?id=${id}`);
+    return this.httpClient.get<BaseResponse<ContactResponseDto>>(`${this._baseUrl}/GetById?id=${id}`);
   }
 
   deleteById(id: number): Observable<BaseResponse<ContactEditResponseDto>> {
-    return this.httpClient.delete<BaseResponse<ContactEditResponseDto>>(`${this._baseUrl}//DeleteContact/${id}`);
+    return this.httpClient.delete<BaseResponse<ContactEditResponseDto>>(`${this._baseUrl}/DeleteContact/${id}`);
   }
 
   createContact(request: ContactEditRequestDto): Observable<BaseResponse<ContactEditResponseDto>> {
-    return this.httpClient.post<BaseResponse<ContactEditResponseDto>>(`${this._baseUrl}//CreateContact`, request);
+    return this.httpClient.post<BaseResponse<ContactEditResponseDto>>(`${this._baseUrl}/CreateContact`, request);
   }
 
   // Can be merged with the method above, depending on the business logic
   updateContact(request: ContactEditRequestDto): Observable<BaseResponse<ContactEditResponseDto>> {
-    return this.httpClient.post<BaseResponse<ContactEditResponseDto>>(`${this._baseUrl}//UpdateContact`, request);
+    return this.httpClient.post<BaseResponse<ContactEditResponseDto>>(`${this._baseUrl}/UpdateContact`, request);
   }
 }

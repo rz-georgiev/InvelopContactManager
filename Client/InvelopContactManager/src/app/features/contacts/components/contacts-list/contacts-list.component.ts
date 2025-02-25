@@ -11,6 +11,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ContactResponseDto } from '../../models/contactResponseDto copy';
 import { ContactsService } from '../../services/contacts.service';
+import { ButtonModule } from 'primeng/button';
+import { Router, RouterModule } from '@angular/router';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-contacts-list',
@@ -26,6 +29,9 @@ import { ContactsService } from '../../services/contacts.service';
     ReactiveFormsModule,
     FormsModule,
     DropdownModule,
+    ButtonModule,
+    RouterModule,
+    InputTextModule,
     MultiSelectModule],
   templateUrl: './contacts-list.component.html',
   styleUrl: './contacts-list.component.css'
@@ -36,15 +42,20 @@ export class ContactsListComponent {
 
   protected contacts: ContactResponseDto[] = [];
 
-  constructor(private contactsService: ContactsService) { }
-
-  applyFilterGlobal($event: any, stringVal: any) {
-    this.dt!.filterGlobal(($event.target as HTMLInputElement).value, stringVal);
-  }
+  constructor(private contactsService: ContactsService, private router: Router) { }
 
   ngOnInit() {
     this.contactsService.getAll().subscribe(x => {
       this.contacts = x.result;
     });
   }
+
+  createNewContact() {
+    this.router.navigate(['./contacts-editor']);
+  }
+
+  editContact(contact: ContactResponseDto) {
+    this.router.navigate(['/contacts-editor'], { queryParams: { id: contact.id } });
+  }
+
 }

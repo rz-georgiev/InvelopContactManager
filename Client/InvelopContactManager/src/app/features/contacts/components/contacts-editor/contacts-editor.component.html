@@ -1,9 +1,11 @@
+<p-card header="Contacts Editor">
+   
 <div class="p-fluid">
     <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
   
       <!-- Name Input -->
-      <div class="p-field">
-        <label for="name">First Name</label>
+      <div class="p-field p-field-space">
+        <label for="name">First Name: </label>
         <input
           id="firstName"
           pInputText
@@ -14,8 +16,8 @@
           First Name is required
         </div>
       </div>
-      <div class="p-field">
-        <label for="surname">Surname</label>
+      <div class="p-field  p-field-space">
+        <label for="surname">Surname: </label>
         <input
           id="surname"
           pInputText
@@ -26,8 +28,8 @@
           Surname is required
         </div>
       </div>
-      <div class="p-field">
-        <label for="dob">Date of Birth</label>
+      <div class="p-field p-field-space">
+        <label for="dob">Date of Birth: </label>
         <input
           id="dob"
           pInputText
@@ -38,8 +40,8 @@
           Date of birth is required
         </div>
       </div>
-      <div class="p-field">
-        <label for="address">Address</label>
+      <div class="p-field p-field-space">
+        <label for="address">Address: </label>
         <input
           id="address"
           pInputText
@@ -50,8 +52,8 @@
           Address is required
         </div>
       </div>
-      <div class="p-field">
-        <label for="phoneNumber">Phone Number</label>
+      <div class="p-field p-field-space">
+        <label for="phoneNumber">Phone Number: </label>
         <input
           id="phoneNumber"
           pInputText
@@ -62,8 +64,8 @@
           Phone Number is required
         </div>
       </div>
-      <div class="p-field">
-        <label for="iban">IBAN</label>
+      <div class="p-field p-field-space">
+        <label for="iban">IBAN: </label>
         <input
           id="iban"
           pInputText
@@ -74,7 +76,14 @@
           IBAN is required
         </div>
       </div>
+      <br/>
       <!-- Submit Button -->
-      <button pButton type="submit" label="Submit" [disabled]="contactForm.invalid"></button>
+      <button pButton type="submit" label="Save Changes"></button>
     </form>
+    <br/>
+    @if (errorMessage && errorMessage.length > 0) {
+        <p-badge [value]="errorMessage" badgeSize="xlarge" severity="danger"  />
+    }
   </div>
+</p-card>
+
