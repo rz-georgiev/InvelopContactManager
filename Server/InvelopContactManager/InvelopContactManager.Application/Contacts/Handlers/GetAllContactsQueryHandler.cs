@@ -25,6 +25,11 @@ namespace InvelopContactManager.Application.Contacts.Handlers
 
             var result =  _mapper.Map<IEnumerable<ContactResponseDto>>(contacts);
 
+            // Temp solution
+            // Can be transferred to automapper
+            foreach (var x in result)
+                x.Dob = x.Dob.ToLocalTime();
+
             return ResponseHelper.Success(result);
         }
     }

@@ -14,13 +14,13 @@
 >
   <ng-template pTemplate="header">
     <tr>
-      <th style="width:16%">First Name</th>
-      <th style="width:16%">Surname</th>
-      <th style="width:16%">Date Of Birth</th>
-      <th style="width:16%">Address</th>
-      <th style="width:16%">Phone Number</th>
-      <th style="width:16%">IBAN</th>
-      <th style="width:4%">Actions</th> <!-- New column for actions -->
+      <th style="width:15%">First Name</th>
+      <th style="width:15%">Surname</th>
+      <th style="width:14%">Date Of Birth</th>
+      <th style="width:14%">Address</th>
+      <th style="width:14%">Phone Number</th>
+      <th style="width:14%">IBAN</th>
+      <th style="width:14%">Actions</th>
     </tr>
     <tr>
       <th>
@@ -88,6 +88,12 @@
           (onClick)="editContact(contact)"
           class="p-button-text"
           label="Edit"
+        ></p-button>
+        <p-button
+          icon="pi pi-pencil"
+          (onClick)="deleteContact(contact)"
+          class="p-button-text button-spacer"
+          label="Delete"
         ></p-button>
       </td>
     </tr>

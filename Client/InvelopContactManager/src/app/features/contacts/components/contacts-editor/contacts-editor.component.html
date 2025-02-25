@@ -30,12 +30,13 @@
       </div>
       <div class="p-field p-field-space">
         <label for="dob">Date of Birth: </label>
-        <input
-          id="dob"
-          pInputText
-          formControlName="dob"
-          [ngClass]="{ 'p-invalid': contactForm.get('dob')?.invalid && contactForm.get('dob')?.touched }"
-        />
+        <p-calendar
+        id="dob"
+        formControlName="dob"
+        [ngClass]="{ 'p-invalid': contactForm.get('dob')?.invalid && contactForm.get('dob')?.touched }"
+        [showTime]="false"
+        dateFormat="yy-mm-dd"
+      ></p-calendar>
         <div *ngIf="contactForm.get('dob')?.invalid && contactForm.get('dob')?.touched" class="p-error">
           Date of birth is required
         </div>

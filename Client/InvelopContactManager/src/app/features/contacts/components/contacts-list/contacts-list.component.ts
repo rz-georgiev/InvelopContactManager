@@ -58,4 +58,9 @@ export class ContactsListComponent {
     this.router.navigate(['/contacts-editor'], { queryParams: { id: contact.id } });
   }
 
+  deleteContact(contact: ContactResponseDto) {
+    this.contactsService.deleteById(contact.id).subscribe();
+    this.contacts = this.contacts.filter(x => x.id !== contact.id);
+  }
+
 }
