@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "start": "concurrently \"npm run start:angular\" \"dotnet run --project ../../Server/InvelopContactManager/InvelopContactManager/InvelopContactManager.API.csproj\"",
+    "start:angular": "ng serve"
   },
   "private": true,
   "dependencies": {
@@ -31,6 +32,7 @@
     "@angular/cli": "^19.1.8",
     "@angular/compiler-cli": "^19.1.0",
     "@types/jasmine": "~5.1.0",
+    "concurrently": "^9.1.2",
     "cypress": "^14.0.3",
     "jasmine-core": "~5.5.0",
     "karma": "~6.4.0",
