@@ -17,7 +17,7 @@ export class ContactsService {
     return this.httpClient.get<BaseResponse<ContactResponseDto[]>>(`http://localhost:4200/GetAll`);
   }
 
-  getById(id: number): Observable<BaseResponse<ContactResponseDto>> {
+  getById(id?: number): Observable<BaseResponse<ContactResponseDto>> {
     return this.httpClient.get<BaseResponse<ContactResponseDto>>(`"http://localhost:4200/GetById?id=${id}"`);
   }
 

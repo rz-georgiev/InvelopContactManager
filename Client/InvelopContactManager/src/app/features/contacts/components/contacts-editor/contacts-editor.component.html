@@ -1,1 +1,80 @@
-<p>contacts-editor works!</p>
+<div class="p-fluid">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  
+      <!-- Name Input -->
+      <div class="p-field">
+        <label for="name">First Name</label>
+        <input
+          id="firstName"
+          pInputText
+          formControlName="firstName"
+          [ngClass]="{ 'p-invalid': contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched }"
+        />
+        <div *ngIf="contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched" class="p-error">
+          First Name is required
+        </div>
+      </div>
+      <div class="p-field">
+        <label for="surname">Surname</label>
+        <input
+          id="surname"
+          pInputText
+          formControlName="surname"
+          [ngClass]="{ 'p-invalid': contactForm.get('surname')?.invalid && contactForm.get('surname')?.touched }"
+        />
+        <div *ngIf="contactForm.get('surname')?.invalid && contactForm.get('surname')?.touched" class="p-error">
+          Surname is required
+        </div>
+      </div>
+      <div class="p-field">
+        <label for="dob">Date of Birth</label>
+        <input
+          id="dob"
+          pInputText
+          formControlName="dob"
+          [ngClass]="{ 'p-invalid': contactForm.get('dob')?.invalid && contactForm.get('dob')?.touched }"
+        />
+        <div *ngIf="contactForm.get('dob')?.invalid && contactForm.get('dob')?.touched" class="p-error">
+          Date of birth is required
+        </div>
+      </div>
+      <div class="p-field">
+        <label for="address">Address</label>
+        <input
+          id="address"
+          pInputText
+          formControlName="address"
+          [ngClass]="{ 'p-invalid': contactForm.get('address')?.invalid && contactForm.get('address')?.touched }"
+        />
+        <div *ngIf="contactForm.get('address')?.invalid && contactForm.get('address')?.touched" class="p-error">
+          Address is required
+        </div>
+      </div>
+      <div class="p-field">
+        <label for="phoneNumber">Phone Number</label>
+        <input
+          id="phoneNumber"
+          pInputText
+          formControlName="phoneNumber"
+          [ngClass]="{ 'p-invalid': contactForm.get('phoneNumber')?.invalid && contactForm.get('phoneNumber')?.touched }"
+        />
+        <div *ngIf="contactForm.get('phoneNumber')?.invalid && contactForm.get('phoneNumber')?.touched" class="p-error">
+          Phone Number is required
+        </div>
+      </div>
+      <div class="p-field">
+        <label for="iban">IBAN</label>
+        <input
+          id="iban"
+          pInputText
+          formControlName="iban"
+          [ngClass]="{ 'p-invalid': contactForm.get('iban')?.invalid && contactForm.get('iban')?.touched }"
+        />
+        <div *ngIf="contactForm.get('iban')?.invalid && contactForm.get('iban')?.touched" class="p-error">
+          IBAN is required
+        </div>
+      </div>
+      <!-- Submit Button -->
+      <button pButton type="submit" label="Submit" [disabled]="contactForm.invalid"></button>
+    </form>
+  </div>
