@@ -70,7 +70,7 @@ namespace InvelopContactManager.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpDelete("DeleteContact/{id}")]
-        public async Task<BaseResponse> DeleteContact([FromRoute] int id)
+        public async Task<BaseResponse<ContactEditResponseDto>> DeleteContact([FromRoute] int id)
         {
             var response = await _mediator.Send(new DeleteContactCommand { Id = id });
             return response;
